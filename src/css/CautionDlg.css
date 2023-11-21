@@ -1,0 +1,44 @@
+/* CustomAlertDialog.css */
+
+/* The overlay behind the dialog */
+.custom-alert-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  /* Show or hide the dialog */
+  .custom-alert-dialog.show {
+    display: flex;
+  }
+  
+  /* The dialog box */
+  .dialog-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  }
+  
+  /* Close button */
+  .dialog-box button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Close button hover effect */
+  .dialog-box button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
