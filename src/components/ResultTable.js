@@ -137,11 +137,15 @@ const ColoredTable = ({ riskState, quizState, countState }) => {
 
         newWindow.document.close();
     };
-
+    const tableHtml = ReactDOMServer.renderToString(
+        <table>
+            <tbody>{renderTable()}</tbody>
+        </table>
+    );
     return (
         <div>
             {
-                <HomepageToPDF content={window.document.content}/>
+                <HomepageToPDF content={tableHtml}/>
             }
             {
                 (countState === total_quiz_count) &&

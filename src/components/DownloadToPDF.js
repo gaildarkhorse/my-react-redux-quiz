@@ -13,19 +13,18 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   title: {
-    fontSize: 24,
+    fontSize: 12,
     marginBottom: 10,
   },
 });
 
 // Component representing the PDF document
-const PDFDocument = () => (
+const PDFDocument = ({body}) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
-        <Text style={styles.title}>My Homepage</Text>
-        {/* Add your homepage content here */}
-      </View>
+        <Text style={styles.title}>{body}</Text>
+        </View>
     </Page>
   </Document>
 );
@@ -33,9 +32,7 @@ const PDFDocument = () => (
 const HomepageToPDF = ({content}) => {
   return (
     <div>
-        
-      {content}
-      <PDFDownloadLink document={<PDFDocument />} fileName="homepage.pdf">
+      <PDFDownloadLink document={<PDFDocument body={content}/>} fileName="homepage.pdf">
         {({ blob, url, loading, error }) =>
           loading ? 'Generating PDF...' : 'Download PDF'
         }
