@@ -8,6 +8,7 @@ import '../css/QuizBox.css';
 import './CautionDlg'
 import CautionDlg from './CautionDlg';
 const QuizBox = ({ quizState, countState, riskState, dispatch }) => {
+
     const [isCheckedOne, onCheckedOne] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
 
