@@ -7,14 +7,19 @@ import checkImg from '../assets/img/checkbutton/btn_check_on-b.png'
 import '../css/QuizBox.css';
 import './CautionDlg'
 import CautionDlg from './CautionDlg';
+import axios from "../config/axios"; 
+import FixedComponent from './FixedCom';
+
+const total_quiz_count = 72;
+
 const QuizBox = ({ quizState, countState, riskState, dispatch }) => {
 
     const [isCheckedOne, onCheckedOne] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-
-    const handleShowAlert = () => {
-      setShowAlert(true);
-    };
+    
+    // const handleShowAlert = () => {
+    //   setShowAlert(true);
+    // };
   
     const handleCloseAlert = () => {
       setShowAlert(false);
@@ -121,21 +126,34 @@ const QuizBox = ({ quizState, countState, riskState, dispatch }) => {
             dispatch(decreaseRiskCnt());
         }
         onCheckedOne(!isCheckedOne);
-
+    }
+    const onSubmit = () => {
+        if(riskState > 2 ){
+            alert("You will get hazy result if you check many higher/lower options");
+            return;
+        }
+        if(countState < total_quiz_count ){
+            alert("You should check 72 options");
+            return;
+        }
+        axios.post('v1/auth/submit', { accessToken: axios.defaults.headers.common.Authorization, data: quizState })
+			.then(res => {
+				//alert(res.data.tokens.access.token)
+				//console.log(res);
+				//window.location.reload();
+                alert(res.data);
+			}).catch(err => {
+				console.log(err);
+			});
 
     }
-    
     return (
         <div className='quiz-box'>
-            { /* Quiz */}
             <ul className='quiz-sub-box'>
                 {
                     questions.map((question) => {
                         return (
                             <div className='quiz-item'>
-                                {/* <h6>quizCount: {countState}</h6>
-                                <h6>quizState: {quizState}</h6>
-                                <h6>riskCount: {riskState}</h6> */}
                                 <h6>quizCount: {countState}</h6>
                                 <div className='quiz-item-main'>
                                     <h3>
@@ -186,6 +204,10 @@ const QuizBox = ({ quizState, countState, riskState, dispatch }) => {
                                                 }
                                             </div>
                                         </div>
+                                        {
+                                           (countState === total_quiz_count) &&
+                                            <FixedComponent callbackResultView={onSubmit} />
+                                        }
                                     </>
 
                                 }

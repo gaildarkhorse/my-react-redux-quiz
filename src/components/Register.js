@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../config/axios";
 import React from "react";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ function Register() {
 			alert("All fields must be filled out.");
 			return;
 		}
-		axios.post('http://localhost:3000/v1/auth/register', { name: userName, email: userEmail, password: userPassword })
+		axios.post('v1/auth/register', { name: userName, email: userEmail, password: userPassword })
 			.then(res => {
 				console.log(res);
 				window.location.reload();

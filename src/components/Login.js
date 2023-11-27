@@ -1,4 +1,4 @@
-import axios from "axios"; 
+import axios from '../config/axios'
 import React from "react"; 
 import {useState } from "react"; 
 
@@ -11,10 +11,14 @@ function Login() {
 			alert("All fields must be filled out.");
 			return;
 		}
-		axios.post('http://localhost:3000/v1/auth/login', { email: userEmail, password: userPassword })
+		axios.post('v1/auth/login', { email: userEmail, password: userPassword })
 			.then(res => {
-				console.log(res);
-				window.location.reload();
+				
+				const token = res.data.tokens.acces.token
+				window.localStorage.setItem('token', token)
+				axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+				window.location.href('/')
+
 			}).catch(err => {
 				console.log(err);
 			});
