@@ -10,7 +10,7 @@ import CautionDlg from './CautionDlg';
 import axios from "../config/axios"; 
 import FixedComponent from './FixedCom';
 
-const total_quiz_count = 72;
+const total_quiz_count = 5;
 
 const QuizBox = ({ quizState, countState, riskState, dispatch }) => {
 
@@ -136,8 +136,13 @@ const QuizBox = ({ quizState, countState, riskState, dispatch }) => {
             alert("You should check 72 options");
             return;
         }
-        axios.post('v1/auth/submit', { accessToken: axios.defaults.headers.common.Authorization, data: quizState })
-			.then(res => {
+        alert(window.localStorage.getItem('token'));
+        axios.post('v1/auth/submit', {data: quizState }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'token': axios.defaults.headers.common.Authorization,
+            },
+        }).then(res => {
 				//alert(res.data.tokens.access.token)
 				//console.log(res);
 				//window.location.reload();

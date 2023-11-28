@@ -1,6 +1,7 @@
 import axios from '../config/axios'
 import React from "react"; 
 import {useState } from "react"; 
+import { API_URL } from '../config/constants';
 
 function Login() { 
 	const [userPassword, setPassword] = useState("");
@@ -13,12 +14,12 @@ function Login() {
 		}
 		axios.post('v1/auth/login', { email: userEmail, password: userPassword })
 			.then(res => {
-				
-				const token = res.data.tokens.acces.token
+				const token = res.data.tokens.access.token
 				window.localStorage.setItem('token', token)
 				axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-				window.location.href('/')
-
+				alert(axios.defaults.headers.common.Authorization)
+				window.location.assign('/start')
+				alert("go home")
 			}).catch(err => {
 				console.log(err);
 			});
