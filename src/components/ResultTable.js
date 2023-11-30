@@ -133,8 +133,6 @@ const ColoredTable = ({ riskState, quizState, countState }) => {
                 </body>
             </html>
             `);
-
-
         newWindow.document.close();
     };
     const tableHtml = ReactDOMServer.renderToString(

@@ -68,7 +68,6 @@ function Register() {
 						</button>
 					</form>
 				</div>
-
 			</div>
 		</div>
 	)
