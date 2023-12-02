@@ -2,7 +2,6 @@ import axios from "../config/axios";
 import React from "react";
 import { useState } from "react";
 
-
 function Register() {
 	const [userName, setName] = useState("");
 	const [userPassword, setPassword] = useState("");
@@ -26,10 +25,10 @@ function Register() {
 		
 	}
 
+
 	return (
 		<div className="container mt-5">
 			<div className="row">
-
 				<div className="col-md-5">
 					<h2 className="text-center">Sign up</h2>
 					<form className="bg-light p-4">

@@ -17,18 +17,16 @@ function Login() {
 				const token = res.data.tokens.access.token
 				window.localStorage.setItem('token', token)
 				axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-				alert(axios.defaults.headers.common.Authorization)
+				// alert(axios.defaults.headers.common.Authorization)
 				window.location.assign('/start')
-				alert("go home")
+				// alert("go home")
 			}).catch(err => {
 				console.log(err);
 			});
 	}
-
 	const userCancel = () => {
 		
 	}
-
 	return (
 		<div className="container mt-5">
 			<div className="row">

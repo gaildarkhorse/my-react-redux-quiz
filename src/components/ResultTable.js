@@ -28,7 +28,8 @@ const ColoredTable = ({ riskState, quizState, countState }) => {
     const firstGroupColor = '#CCCC00';
     const secondGroupColor = '#00CCCC';
     const thirdGroupColor = '#CC00CC';
-
+    const fourthGroupColor = '#CCCCCC';
+    
     const colorSet = [firstGroupColor, secondGroupColor, thirdGroupColor];
 
     const genCellColor = (row, col) => {

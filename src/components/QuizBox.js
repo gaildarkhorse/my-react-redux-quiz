@@ -136,11 +136,12 @@ const QuizBox = ({ quizState, countState, riskState, dispatch }) => {
             alert("You should check 72 options");
             return;
         }
-        alert(window.localStorage.getItem('token'));
+        // alert(window.localStorage.getItem('token'));
         axios.post('v1/auth/submit', { data: quizState }, {
             headers: {
                 'Content-Type': 'application/json',
-                'token': axios.defaults.headers.common.Authorization,
+                'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+                // 'token': axios.defaults.headers.common.Authorization,
             },
         }).then(res => {
             //alert(res.data.tokens.access.token)
